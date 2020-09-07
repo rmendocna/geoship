@@ -21,7 +21,7 @@ def add_ships(apps, schema):
         try:
             ship.save()
         except Exception as e:
-            sys.stderr.write('Could not create Ship record: %S' % e)
+            sys.stderr.write('Could not create Ship record: %s' % e)
 
 
 def import_positions(apps, schema):
@@ -31,7 +31,7 @@ def import_positions(apps, schema):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('fairing', '0001_initial'),
+        ('fairing', '0002_auto_20200907_1552'),
     ]
 
     operations = [
