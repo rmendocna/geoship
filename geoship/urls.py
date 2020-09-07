@@ -37,7 +37,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include([
         path('ships/', api_ship_list, name='api-fairing-ship-list'),
-        path('positions/<imo>', api_ship_position_list, name='api-fairing-ship-position-list'),
+        path('positions/<imo>/', api_ship_position_list, name='api-fairing-ship-position-list'),
     ])),
     path('', TemplateView.as_view(template_name='fairing/index.html'), name='index'),
 ]

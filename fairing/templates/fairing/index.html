@@ -3,7 +3,7 @@
   <head>                                                                                                               
     <meta charset="utf-8" />                                                                                           
     <title>Python Assignment</title>                                                                                   
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"                                     
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="  
           crossorigin=""/>                                                                                             
     <style>                                                                                                            
@@ -19,11 +19,11 @@
     <h1>Python Assignment</h1>                                                                                    
     <div id="mapid"></div>                                                                                             
                                                                                                                        
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    <script src="//unpkg.com/leaflet@1.4.0/dist/leaflet.js"
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin="">                                                                                            
     </script>                                                                                                          
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
     </script>
@@ -34,7 +34,7 @@
         var map = L.map('mapid').setView([39.433, -0.302], 2.2);                                                
                                                                                                                
         // Add MapBox layer.                                                                                   
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+        L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
           id: 'mapbox.light',                                                                          
           attribution: 'Pole Star Space Applications, Ltd.'                                                              
         }).addTo(map);                                                                                                   
@@ -48,7 +48,7 @@
           for (i = 0; i < ships_data.length; i++) {
             (function (currentShip) {
               $.ajax({
-                url: 'http://localhost:8000/api/positions/' + currentShip.imo,
+                url: 'http://localhost:8000/api/positions/' + currentShip.imo + '/',
                 dataType: 'json'
               }).done(function(positions_data) {
                 // Add current position marker (1st position in the list).
