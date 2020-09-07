@@ -4,7 +4,7 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 from fairing.models import Ship, ShipPosition
 
-logger = logging.getLogger('default')
+logger = logging.getLogger('command')
 
 
 class Command(BaseCommand):
@@ -30,7 +30,17 @@ class Command(BaseCommand):
             with open(filename) as csv_file:
                 reader = csv.reader(csv_file)
                 for row in reader:
-                    position = ShipPosition(ship_id=ship_ids[row[0]], timestamp=row[1],
+                    try:
+                        si = ship_ids[row[0]]
+                    except KeyError:
+                        msg = 'Could not find Ship with IMO `%s`' % row[0]
+                        if verbosity > 1:
+                            self.stderr.write(msg)
+                        failed += 1
+                        logger.error(msg)
+                        continue
+
+                    position = ShipPosition(ship_id=si, timestamp=row[1],
                                             latitude=row[2], longitude=row[3])
                     try:
                         position.save()
