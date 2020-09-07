@@ -6,7 +6,7 @@ RUN mkdir /code
 WORKDIR /code
 
 # Copying requirements
-COPY ./geoship/ .
+COPY . .
 
 RUN apk add --no-cache --virtual .build-deps \
     ca-certificates gcc linux-headers musl-dev \
