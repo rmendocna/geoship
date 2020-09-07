@@ -1,6 +1,4 @@
-from django.http import JsonResponse
-from django.shortcuts import render
-
+from django.http import Http404, JsonResponse
 
 from .models import Ship, ShipPosition
 
@@ -13,7 +11,11 @@ def api_ship_list(request):
 
 def api_ship_position_list(request, imo):
 
-    ship = Ship.objects.get(imo=imo)
+    try:
+        ship = Ship.objects.get(imo=imo)
+    except Ship.DoesNotExist:
+        raise Http404('Could not find IMO')
+
     positions = ShipPosition.objects.filter(ship=ship).order_by(
         '-timestamp').values('timestamp', 'latitude', 'longitude')
     return JsonResponse(list(positions), safe=False)
