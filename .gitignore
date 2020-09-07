@@ -3,4 +3,8 @@ include/
 lib/
 *.pyc
 __pycache__
+pyvenv.cfg
+.idea
+db.sqlite3
+
 

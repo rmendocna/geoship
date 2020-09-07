@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, register_converter
+from django.views.generic import TemplateView
 
 from fairing.views import api_ship_list, api_ship_position_list
 
@@ -36,6 +37,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include([
         path('ships/', api_ship_list, name='api-fairing-ship-list'),
-        path('positions/<imo>/', api_ship_position_list, name='api-fairing-ship-position-list'),
-    ]))
+        path('positions/<imo>', api_ship_position_list, name='api-fairing-ship-position-list'),
+    ])),
+    path('', TemplateView.as_view(template_name='fairing/index.html'), name='index'),
 ]

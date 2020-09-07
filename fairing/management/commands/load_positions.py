@@ -10,7 +10,7 @@ logger = logging.getLogger('default')
 class Command(BaseCommand):
     help = """
     Loads ship position data from CSV files in the format
-        <IMO>, <timestamp-with-tz>, <lat>, <lng> 
+        <IMO:7-digits>, <timestamp:isodatetime+tz>, <latitude:float>, <longitude:float> 
         
     You must declare the full relative or absolute paths, how many you may want to.
     This will NOT update existing records
@@ -31,7 +31,7 @@ class Command(BaseCommand):
                 reader = csv.reader(csv_file)
                 for row in reader:
                     position = ShipPosition(ship_id=ship_ids[row[0]], timestamp=row[1],
-                                            lat=row[2], lng=row[3])
+                                            latitude=row[2], longitude=row[3])
                     try:
                         position.save()
                     except Exception as e:

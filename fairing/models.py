@@ -34,8 +34,8 @@ class ShipPosition(models.Model):
     """
     ship = models.ForeignKey(Ship, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
-    lat = models.FloatField(validators=[MinValueValidator(-90), MaxValueValidator(90)])
-    lng = models.FloatField(validators=[MinValueValidator(-180), MaxValueValidator(180)])
+    latitude = models.FloatField(validators=[MinValueValidator(-90), MaxValueValidator(90)])
+    longitude = models.FloatField(validators=[MinValueValidator(-180), MaxValueValidator(180)])
 
     class Meta:
         unique_together = [('ship', 'timestamp')]
