@@ -7,7 +7,7 @@ The data can be stored by importing CSV files using the comand line as follows:
 
     code$ python manage.py load_positions <filename1> <filename2> ...
     
-each file containing as many position records as it likes
+ each file containing as many position records as it likes
     
 Each row of a positions file has the structure
 
@@ -19,12 +19,12 @@ Each row of a positions file has the structure
 The image should be pulled from the corresponding dockerhub repository and run
 
     $ docker pull rmendocna/geoship:1.1
-    $ docker run -p 8000:8000 rmendocna/geoship:1.0  python manage.py runserver 0.0.0.0:8000
+    $ docker run -p 8000:8000 rmendocna/geoship:1.1  python manage.py runserver 0.0.0.0:8000
     
 Browsing to http://localhost:8000 should deliver the map as it was provided originally, 
 with the corresponding ship positions plotted there-in as expected.
 
-![alt text](index.png) 
+![Index page](index.png) 
 
 
 ## (Personal) Notes
@@ -37,9 +37,11 @@ with the corresponding ship positions plotted there-in as expected.
  3. The storage is SQLite3 and no separate "volume" so there is no data persistence once the container is stopped
  4. _Django_ provides an /admin/ interface with which one can, for example, add a Ship - since no endpoint was designed for that purpose.
     The credentials for the /admin/ are _test:test_ 
-  4.1. A test data set was added and it can be loaded while the container is running;
-       From the Docker Desktop one enters the container CLI and enter the following, roughly identical to the test code.
-       First, enter the Ship, either via the /admin/ interface or the shell as follows:
+![The Django admin](ship_admin.png)
+
+ 4.1. A test data set was added and it can be loaded while the container is running;
+      From the Docker Desktop one enters the container CLI and enter the following, roughly identical to the test code.
+      First, enter the Ship, either via the /admin/ interface or the shell as follows:
 ```
     /code # python manage.py shell
     Python 3.8.5 (default, Aug  4 2020, 04:11:56) 
@@ -58,6 +60,6 @@ with the corresponding ship positions plotted there-in as expected.
     Total positions: 396
     /code # 
 ```
-It the displays the additional positions of one ship on the Bering Sea
+As we reload the index page it then displays the additional positions of one ship on the Bering Sea.
 
 ![resolve_pionner](resolve_pioneer.png)
